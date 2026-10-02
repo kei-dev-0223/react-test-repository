@@ -1,0 +1,51 @@
+@use "@/styles/mixins" as mixins;
+
+.footer {
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    padding: 80px 0 16px;
+    @include mixins.pc {
+        padding: 116px 0 16px;
+    }
+    &--home{
+        position: fixed;
+        z-index: var(--z-footer-fixed);
+        bottom: 16px;
+        left: 0;
+        width: 100%;
+        padding: 0;
+    }
+    &--weather{
+        position: fixed;
+        z-index: var(--z-footer-fixed);
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        padding: 0;
+        .footer__copyright{
+            color: #fff;
+            @include mixins.pc {
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+    }
+    &__copyright {
+        cursor: default;
+        pointer-events: auto;
+        font-weight: 100;
+        font-size: var(--fs-xxs);
+        letter-spacing: 0.8em;
+        text-indent: 0.8em;
+        color: color-mix(in srgb, var(--color-text), transparent 10%);
+        transition: color 1s cubic-bezier(0.2, 0, 0.2, 1),letter-spacing 1s cubic-bezier(0.2, 0, 0.2, 1);
+        @include mixins.pc {
+            &:hover {
+                color: color-mix(in srgb, var(--color-text), transparent 0%);
+                letter-spacing: 0.9em;
+            }
+        }
+    }
+}

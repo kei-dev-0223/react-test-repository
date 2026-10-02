@@ -1,0 +1,30 @@
+@use "@/styles/mixins" as mixins;
+
+.heading {
+    position: relative;
+    padding: 8px 0 4px 20px;
+    &:before{
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 1px;
+        width: 2px;
+        background: var(--color-icon-accent);
+    }
+    &__title {
+        font-size: var(--fs-lg);
+        font-weight: 400;
+        letter-spacing: 0.3em;
+        color: color-mix(in srgb, var(--color-text), transparent 20%);
+        line-height: 1;
+        @include mixins.pc {
+            font-size: var(--fs-lg);
+        }
+    }
+    &__lead {
+        margin-top: 12px;
+        font-size: var(--fs-sm);
+        color: color-mix(in srgb, var(--color-text), transparent 60%);
+    }
+}

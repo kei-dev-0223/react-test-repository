@@ -1,0 +1,77 @@
+@use "@/styles/mixins" as mixins;
+
+.tab {
+    &__head {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        border-bottom: 1px solid color-mix(in srgb, var(--color-border) 26%, transparent);
+        &-item {
+            position: relative;
+            flex-shrink: 0;
+            display: block;
+            padding: 12px 20px;
+            background-color: transparent;
+            border: none;
+            color: inherit;
+            white-space: nowrap;
+            cursor: pointer;
+            &:after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 2px;
+                background-color: var(--color-text);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            @include mixins.pc {
+                &:hover {
+                    .tab__head-item-in {
+                        color: color-mix(in srgb, var(--color-text) 80%, transparent);
+                    }
+                }
+            }
+            &-in {
+                font-size: var(--fs-sm);
+                letter-spacing: 0.06em;
+                color: color-mix(in srgb, var(--color-text) 50%, transparent);
+                transition: color var(--duration-hover) var(--ease-hover);
+            }
+            &--active {
+                .tab__head-item-in {
+                    color: var(--color-text);
+                }
+                &:after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    &__body {
+        margin-top: 20px;
+        display: block;
+        &-item {
+            display: none;
+            &--active {
+                display: block;
+                animation: tab-fade-animation 0.6s ease 0s 1 normal;
+            }
+            &-in {
+                display: block;
+            }
+        }
+    }
+}
+
+@keyframes tab-fade-animation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

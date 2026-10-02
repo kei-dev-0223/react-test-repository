@@ -1,0 +1,86 @@
+@use "@/styles/mixins" as mixins;
+
+.hero {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    &__in {
+        position: relative;
+        width: 100vw;
+        height: 100vw;
+        @include mixins.pc {
+            width: 50vw;
+            height: 50vw;
+            max-width: 670px;
+            max-height: 670px;
+        }
+    }
+    &__circle {
+        position: absolute;
+        inset: 0;
+        will-change: transform;
+        pointer-events: none;
+    }
+    &__text-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+        pointer-events: none;
+        z-index: 10;
+    }
+    &__title {
+        text-align: center;
+        font-weight: 200;
+        text-indent: 1.6em;
+        color: var(--color-text);
+        @include mixins.pc {
+            letter-spacing: 3em;
+            text-indent: 3em;
+        }
+        &-main{
+            letter-spacing: 2em;
+            font-size: var(--fs-sm);
+            @include mixins.pc {
+                font-size: var(--fs-xl);
+            }
+        }
+        &-sub{
+            font-weight: 100;
+            letter-spacing: 1.6em;
+            margin: 1em 0 0;
+            color: color-mix(in srgb, var(--color-text), transparent 40%);
+            font-size: var(--fs-xs);
+            @include mixins.pc {
+                font-size: var(--fs-md);
+            }
+        }
+        &-cursor{
+            animation: blink 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            color: var(--color-text-accent);
+        }
+    }
+
+    @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.1;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+
+
+

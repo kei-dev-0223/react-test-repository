@@ -1,0 +1,69 @@
+@use "@/styles/mixins" as mixins;
+
+.card {
+    display: block;
+    @include mixins.pc {
+        display: flex;
+    }
+    &__head {
+        @include mixins.pc {
+            width: 300px;
+        }
+    }
+    &__image {
+        img {
+            width: 100%;
+        }
+    }
+    &__body {
+        margin-top: 8px;
+        flex: 1;
+        @include mixins.pc {
+            margin: 0 0 0 60px;
+        }
+    }
+    &__category {
+        font-size: var(--fs-sm);
+        color: color-mix(in srgb, var(--color-text) 50%, transparent);
+    }
+    &__title {
+        font-size: var(--fs-lg);
+        font-weight: 500;
+        margin-top: 8px;
+        color: color-mix(in srgb, var(--color-text) 90%, transparent);
+    }
+    &__content {
+        margin-top: 16px;
+        font-size: var(--fs-sm);
+        color: color-mix(in srgb, var(--color-text) 60%, transparent);
+    }
+    &__label {
+        margin-top: 12px;
+        &-item {
+            display: inline-block;
+            font-size: var(--fs-xs);
+            font-weight: 500;
+            border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+            color: color-mix(in srgb, var(--color-text) 60%, transparent);
+            border-radius: 4px;
+            padding: 6px 10px;
+            line-height: 1;
+            & + * {
+                margin-left: 8px;
+            }
+        }
+    }
+    & + .card {
+        border-top: 1px solid color-mix(in srgb, var(--color-border) 26%, transparent);
+        padding-top: 40px;
+    }
+}
+
+a.card {
+    @include mixins.pc {
+        transition: opacity var(--duration-hover) var(--ease-hover);
+        &:hover {
+            opacity: var(--opacity-hover);
+        }
+    }
+}

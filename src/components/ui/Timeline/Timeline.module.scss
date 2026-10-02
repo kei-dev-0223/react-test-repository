@@ -1,0 +1,39 @@
+
+.timeline {
+    &__item {
+        position: relative;
+        padding: 0 0 40px 36px;
+        &:before {
+            content: "";
+            position: absolute;
+            top: 16px;
+            bottom: -16px;
+            left: 6px;
+            width: 1px;
+            background-color: color-mix(in srgb, var(--color-icon) 30%, transparent);
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            top: 12px;
+            left: 1px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background-color: color-mix(in srgb, var(--color-icon) 80%, transparent);
+        }
+        &:last-child:before {
+            display: none;
+        }
+    }
+    &__year {
+        font-size: var(--fs-lg);
+        color: color-mix(in srgb, var(--color-text) 80%, transparent);
+    }
+    &__content {
+        margin-top: 12px;
+        position: relative;
+        font-size: var(--fs-sm);
+        color: color-mix(in srgb, var(--color-text) 80%, transparent);
+    }
+}

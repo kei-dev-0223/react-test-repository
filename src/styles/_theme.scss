@@ -1,0 +1,30 @@
+/* Theme（テーマごとの Alias Token 上書き）
+==========================================================*/
+:root[data-theme="dark"] {
+    /* Text */
+    --color-text:           var(--global-gray-50);
+    --color-text-muted:     var(--global-gray-500);
+    --color-text-inverse:   var(--global-gray-900);
+
+    /* Background */
+    --color-bg:             var(--global-gray-900);
+    --color-bg-inverse:     var(--global-gray-50);
+
+    /* Border */
+    --color-border:         var(--global-gray-50);
+    --color-border-muted:   var(--global-gray-500);
+    --color-border-subtle:  var(--global-gray-800);
+
+    /* Icon */
+    --color-icon:           var(--global-gray-50);
+
+    /* Spotlight */
+    --spotlight-core: rgba(255, 255, 255, 0.85); /* 固定ライト・中心 */
+    --spotlight-mid:  rgba(255, 255, 255, 0.40); /* 固定ライト・中間 */
+    --spotlight-soft: rgba(26, 28, 32, 0.8); /* マウス追従ライト 背景側の色を重ねてグリッドを消す */
+
+    /* PageTransition */
+    --transition-cell: #22252b;  /* マス目の塗り */
+    --transition-fade: 46, 50, 56; /* 消え際・現れ際のフェード */
+    --transition-grid: 70, 75, 82; /* マス目の罫線 */
+}

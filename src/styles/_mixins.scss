@@ -1,0 +1,26 @@
+@use "@/styles/variables" as vars;
+
+@mixin pc {
+  @media (min-width: vars.$bp-pc-min) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media (max-width: vars.$bp-sp-max) {
+    @content;
+  }
+}
+
+// ヘッダーのナビ専用。レイアウトの切り替え（pc / sp）とは別の閾値を使う
+@mixin nav-pc {
+  @media (min-width: vars.$bp-nav-min) {
+    @content;
+  }
+}
+
+@mixin nav-sp {
+  @media (max-width: vars.$bp-nav-max) {
+    @content;
+  }
+}

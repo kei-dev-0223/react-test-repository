@@ -1,0 +1,26 @@
+@use "@/styles/mixins" as mixins;
+
+.preview {
+    position: relative;
+    padding: 34px 16px 16px;
+    border: 1px solid color-mix(in srgb, var(--color-border), transparent 74%);
+    border-radius: 4px;
+    background-color: color-mix(in srgb, var(--color-text), transparent 97%);
+    @include mixins.pc {
+        padding: 40px 24px 24px;
+    }
+    &:before {
+        content: "PREVIEW";
+        position: absolute;
+        top: 12px;
+        left: 16px;
+        font-size: var(--fs-xxs);
+        letter-spacing: 0.12em;
+        line-height: 1;
+        color: color-mix(in srgb, var(--color-text), transparent 60%);
+        @include mixins.pc {
+            top: 14px;
+            left: 24px;
+        }
+    }
+}

@@ -1,0 +1,54 @@
+@use "@/styles/mixins" as mixins;
+
+.accordion {
+    overflow: hidden;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-border) 26%, transparent);
+    &__head {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 20px 40px 20px 0;
+        background-color: transparent;
+        border: none;
+        color: inherit;
+        text-align: left;
+        cursor: pointer;
+        transition: opacity var(--duration-hover) var(--ease-hover);
+        &:before,&:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 2px;
+            width: 13px;
+            height: 1px;
+            background-color: color-mix(in srgb, var(--color-icon) 70%, transparent);
+            transition: transform 0.3s ease;
+        }
+        &:before {
+            transform: translateY(-50%);
+        }
+        &:after {
+            transform: translateY(-50%) rotate(90deg);
+        }
+        @include mixins.pc {
+            &:hover {
+                opacity: var(--opacity-hover);
+            }
+        }
+        &-in {
+            font-size: var(--fs-md);
+            color: color-mix(in srgb, var(--color-text) 90%, transparent);
+        }
+    }
+    &--active {
+        .accordion__head:after {
+            transform: translateY(-50%) rotate(0deg);
+        }
+    }
+    &__body {
+        overflow: hidden;
+        &-in {
+            padding-bottom: 20px;
+        }
+    }
+}

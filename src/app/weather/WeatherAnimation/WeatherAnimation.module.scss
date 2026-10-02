@@ -1,0 +1,29 @@
+@use "@/styles/mixins" as mixins;
+
+/* ==============================================================================
+SPとPCの差はCSSで吸収
+
+viewBox を JS（window.innerWidth）で切り替えると、静的HTMLの初回描画が必ずPC基準になり、
+マウント後に切り替わって絵が横にずれるため、viewBoxはPC基準で固定し、差分をCSSで当てる。
+============================================================================== */
+
+.weather-animation {
+    position: relative;
+    height: 100%;
+    &__scene {
+        transform: translate(50px, -10px);
+
+        @include mixins.pc {
+            transform: none;
+        }
+    }
+    &__sky {
+        y: -150px;
+        height: 290px;
+
+        @include mixins.pc {
+            y: -200px;
+            height: 500px;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    /* サイト本体と同じ考え方。ブラウザのタブが暗いときだけ反転させる */
+    .ink { fill: #1a1c20; }
+    @media (prefers-color-scheme: dark) {
+      .ink { fill: #fafafa; }
+    }
+  </style>
+
+  <!-- R … ステム / ボウル上 / ボウル右 / ボウル下 / 脚 -->
+  <g class="ink">
+    <rect x="4" y="4" width="4" height="24"/>
+    <rect x="4" y="4" width="14" height="4"/>
+    <rect x="14" y="4" width="4" height="14"/>
+    <rect x="4" y="14" width="14" height="4"/>
+    <polygon points="10,18 15,18 20,28 15,28"/>
+  </g>
+
+  <!-- カーソル … ロゴの TEST_SITE の「_」。ここだけアクセント -->
+  <rect x="23" y="24" width="7" height="4" fill="#008080"/>
+</svg>

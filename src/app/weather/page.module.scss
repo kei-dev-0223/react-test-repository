@@ -1,0 +1,330 @@
+@use "@/styles/mixins" as mixins;
+
+// ============================================================================
+// イラスト本体の色は、WeatherAnimation.tsx側に記載。
+// イラスト上の要素も、CSS変数は使わずに意図的に直書きに。
+// ============================================================================
+
+.weather {
+  position: relative;
+  margin-top: 50px;
+
+  &__search {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 8px 0;
+    width: fit-content;
+    &-input {
+      border: none;
+      outline: none;
+      font-size: var(--fs-md);
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.6);
+      background: #1a1c20;
+      padding: 0 0 0 20px;
+      height: 40px;
+      width: 140px;
+      border-radius: 4px 0 0 4px;
+      @include mixins.pc {
+        width: 240px;
+    }
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 0.15em;
+      }
+    }
+    &-button {
+      border: none;
+      background: #1a1c20;
+      border-radius: 0 4px 4px 0;
+      font-size: var(--fs-xxs);
+      height: 40px;
+      width: 40px;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:disabled {
+        color: rgba(255, 255, 255, 0.6);
+        cursor: not-allowed;
+      }
+    }
+    &-icon {
+      color: #ffffff;
+      width: 22px;
+    }
+    &-icon-loading {
+      animation: spin 1s linear infinite;
+      color: #ffffff;
+      width: 22px;
+      // 読み込み中であることを伝える必要があるため、動きを減らす設定でも回転を維持する
+      @media (prefers-reduced-motion: reduce) {
+        animation-duration: 1s !important;
+        animation-iteration-count: infinite !important;
+      }
+    }
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  &__location-button {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: transparent;
+    font-size: var(--fs-xxs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    margin-left: 12px;
+    border: 1px solid color-mix(in srgb, #ffffff 60%, transparent);
+    background: color-mix(in srgb, #1a1c20 30%, transparent);
+    padding: 5px 6px;
+    border-radius: 100px;
+    @include mixins.pc {
+      margin-left: 16px;
+      padding: 5px 10px;
+
+    }
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    &-icon {
+      color: #ffffff;
+      width: 20px;
+      animation: float 3s ease-in-out infinite;
+      @include mixins.pc {
+        width: 24px;
+      }
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(-1px);
+        }
+        50% {
+          transform: translateY(1px);
+        }
+      }
+    }
+    &-txt {
+      color: #ffffff;
+      font-size: var(--fs-xs);
+      margin: 4px;
+    }
+  }
+
+  &__display-name {
+    margin-top: 30px;
+    font-size: var(--fs-xxl);
+    color: #ffffff;
+    letter-spacing: 0.2em;
+    text-shadow: 0 1px 7px rgba(0, 0, 0, 0.5);
+  }
+
+  &__result {
+    display: flex;
+    flex-wrap: wrap;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    &-temp {
+      width: 100%;
+      font-size: 5.6rem;
+      color: #ffffff;
+      line-height: 1;
+    }
+    &-status {
+      font-size: var(--fs-md);
+      color: #ffffff;
+      line-height: 1;
+      margin: 10px 1em 0 0;
+    }
+    &-wind {
+      font-size: var(--fs-md);
+      color: #ffffff;
+      line-height: 1;
+      margin-top: 10px;
+    }
+  }
+
+  &__weekly {
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    @include mixins.pc {
+      white-space: inherit;
+      height: 100px;
+      bottom: 40px;
+      display: flex;
+      gap: 0;
+    }
+    &-item {
+      flex: 1;
+      padding: 0 4px;
+      text-align: center;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      display: inline-block;
+      min-width: calc(100% /7);
+      @include mixins.pc {
+        display: block;
+        width: auto;
+      }
+      &-in {
+        padding: 8px 4px;
+      }
+      &:first-child {
+        .weather__weekly-item-in {
+          border: 1px solid #eda81e;
+          border-radius: 10px;
+        }
+        .weather__weekly-date{
+          &:after{
+            content: "今日";
+            margin-left: 4px;
+            padding: 2px 10px;
+            background-color: #eda81e;
+            border-radius: 100px;
+            color: #1a1c20;
+            font-weight: bold;
+          }
+        }
+      }
+      &:last-child {
+        border-right: none;
+      }
+    }
+    &-date {
+      font-size: var(--fs-xxs);
+      letter-spacing: 0.1em;
+      opacity: 0.75;
+    }
+    &-label {
+      font-size: var(--fs-xxs);
+      letter-spacing: 0.1em;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0 6px;
+    }
+    &-temp {
+      margin-top: 10px;
+    }
+    &-max {
+      display: block;
+      font-size: var(--fs-xs);
+      color: #ffffff;
+      line-height: 1.5;
+      @include mixins.pc {
+        font-size: var(--fs-md);
+        display: inline-block;
+      }
+    }
+    &-min {
+      display: block;
+      font-size: var(--fs-xs);
+      opacity: 0.5;
+      line-height: 1.5;
+      @include mixins.pc {
+        font-size: var(--fs-md);
+        display: inline-block;
+      }
+    }
+  }
+
+  &__animate-img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all .6s ease-in 1.4s;
+    z-index: -1;
+    pointer-events: none;
+    aspect-ratio: inherit;
+    &-in{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        &:after{
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: #1a1c20;
+          height: 360px;
+          transform: translate(0,90%);
+          z-index: 1;
+          @include mixins.pc {
+            height: 260px;
+          }
+        }
+    }
+    svg {
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+  }
+
+  &__credit {
+    margin-top: 40px;
+    font-size: var(--fs-xxs);
+    line-height: 1.9;
+    color: rgba(0, 0, 0, 0.5);
+    a {
+      text-decoration: underline;
+      transition: opacity var(--duration-hover) var(--ease-hover);
+      @include mixins.pc {
+        &:hover {
+          opacity: var(--opacity-hover);
+        }
+      }
+    }
+  }
+
+  &__error {
+    margin-top: 8px;
+    border-left: 2px solid rgba(0, 0, 0, 0.5);
+    padding-left: 16px;
+
+    &-en {
+      font-size: var(--fs-sm);
+      letter-spacing: 0.15em;
+      color: rgba(0, 0, 0, 0.5);
+      margin-bottom: 4px;
+    }
+
+    &-jp {
+      font-size: var(--fs-sm);
+      color: rgba(0, 0, 0, 0.75);
+      line-height: 1.6;
+    }
+  }
+
+  &--searched {
+      .weather__animate-img{
+        transform: translate(0,-100px);
+      }
+      .weather__animate-img-in:before{
+        transform: translate(0);
+      }
+  }
+}

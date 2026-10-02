@@ -1,0 +1,111 @@
+@use "@/styles/mixins" as mixins;
+
+// ============================================================================
+// 汎用ユーティリティクラス
+// ============================================================================
+
+// 基本Mixin（基本／-pc／-sp の3バリアントを一括生成）
+@mixin gen-responsive($class-name, $property, $value) {
+  .#{$class-name}    { #{$property}: #{$value} !important; }
+  .#{$class-name}-pc { @include mixins.pc { #{$property}: #{$value} !important; } }
+  .#{$class-name}-sp { @include mixins.sp { #{$property}: #{$value} !important; } }
+}
+
+/* Display ----------------------------------------- */
+@include gen-responsive("u-d-none",         display, none);
+@include gen-responsive("u-d-block",        display, block);
+@include gen-responsive("u-d-inline-block", display, inline-block);
+@include gen-responsive("u-d-flex",         display, flex);
+@include gen-responsive("u-d-grid",         display, grid);
+
+/* Justify / Align --------------------------------- */
+@include gen-responsive("u-jc-start",   justify-content, flex-start);
+@include gen-responsive("u-jc-center",  justify-content, center);
+@include gen-responsive("u-jc-end",     justify-content, flex-end);
+@include gen-responsive("u-jc-between", justify-content, space-between);
+@include gen-responsive("u-ai-start",   align-items, flex-start);
+@include gen-responsive("u-ai-center",  align-items, center);
+@include gen-responsive("u-ai-end",     align-items, flex-end);
+@include gen-responsive("u-fd-column",  flex-direction, column);
+@include gen-responsive("u-flex-wrap",  flex-wrap, wrap);
+
+/* Grid -------------------------------------------- */
+@include gen-responsive("u-grid-2col", grid-template-columns, 1fr 1fr);
+@include gen-responsive("u-grid-3col", grid-template-columns, 1fr 1fr 1fr);
+@include gen-responsive("u-grid-4col", grid-template-columns, 1fr 1fr 1fr 1fr);
+
+/* Text-align -------------------------------------- */
+@include gen-responsive("u-ta-c", text-align, center);
+@include gen-responsive("u-ta-l", text-align, left);
+@include gen-responsive("u-ta-r", text-align, right);
+
+/* Font Weight ------------------------------------- */
+@include gen-responsive("u-fw-n", font-weight, 400);
+@include gen-responsive("u-fw-m", font-weight, 500);
+@include gen-responsive("u-fw-b", font-weight, 700);
+
+/* Margin / Padding (4の倍数 0〜200px) -------------- */
+$spacing-props: (
+  "mt": margin-top,    "mb": margin-bottom,
+  "ml": margin-left,   "mr": margin-right,
+  "pt": padding-top,   "pb": padding-bottom,
+  "pl": padding-left,  "pr": padding-right
+);
+@each $prefix, $prop in $spacing-props {
+  @for $i from 0 through 50 {
+    $val: $i * 4;
+    @include gen-responsive("u-#{$prefix}-#{$val}", $prop, #{$val}px);
+  }
+}
+
+/* Gap (4の倍数 0〜200px) -------------------------- */
+@for $i from 0 through 50 {
+  $val: $i * 4;
+  @include gen-responsive("u-gap-#{$val}",   gap, #{$val}px);
+  @include gen-responsive("u-gap-x-#{$val}", column-gap, #{$val}px);
+  @include gen-responsive("u-gap-y-#{$val}", row-gap, #{$val}px);
+}
+
+/* Width px (4の倍数 0〜1000px) -------------------- */
+@for $i from 0 through 250 {
+  $val: $i * 4;
+  @include gen-responsive("u-w-#{$val}", width, #{$val}px);
+}
+
+/* Width % (10刻み 0〜100%) ------------------------ */
+@for $i from 0 through 10 {
+  $p: $i * 10;
+  @include gen-responsive("u-w-#{$p}per", width, #{$p}%);
+}
+
+/* Font Sizes（CSSカスタムプロパティ経由、token 名と 1:1 対応） */
+@include gen-responsive("u-fs-xxs", font-size, var(--fs-xxs));
+@include gen-responsive("u-fs-xs",  font-size, var(--fs-xs));
+@include gen-responsive("u-fs-sm",  font-size, var(--fs-sm));
+@include gen-responsive("u-fs-md",  font-size, var(--fs-md));
+@include gen-responsive("u-fs-lg",  font-size, var(--fs-lg));
+@include gen-responsive("u-fs-xl",  font-size, var(--fs-xl));
+@include gen-responsive("u-fs-xxl", font-size, var(--fs-xxl));
+
+/* Scroll ------------------------------------------ */
+@include gen-responsive("u-scroll-x",             overflow-x, auto);
+@include gen-responsive("u-overscroll-x-contain", overscroll-behavior-x, contain);
+@include gen-responsive("u-flex-shrink-0",        flex-shrink, 0);
+
+/* Others ------------------------------------------ */
+@include gen-responsive("u-m-auto",    margin-inline, auto);
+@include gen-responsive("u-opacity-0", opacity, 0);
+
+/* アクセシビリティ -------------------------------- */
+// 視覚的には隠すが、スクリーンリーダーには読ませたい要素に使う
+.u-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

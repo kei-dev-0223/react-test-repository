@@ -1,0 +1,14 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+.container-top {
+  min-height: calc(100dvh - var(--header-height));
+}
+.container-sub {
+  padding: 44px 16px 0;
+  @include mixins.pc {
+    width: vars.$content-width;
+    margin: 0 auto;
+    padding: 72px 0 0;
+  }
+}

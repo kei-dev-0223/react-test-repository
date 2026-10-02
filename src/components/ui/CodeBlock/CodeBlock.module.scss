@@ -1,0 +1,16 @@
+@use "@/styles/mixins" as mixins;
+
+.codeblock{
+    background-color: var(--color-bg-inverse);
+    color: var(--color-text-inverse);
+    padding: 12px 20px;
+    border-radius: 4px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    font-size: var(--fs-xs);
+    line-height: 1.7;
+    @include mixins.pc {
+        font-size: var(--fs-sm);
+    }
+}

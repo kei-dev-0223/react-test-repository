@@ -1,0 +1,95 @@
+
+/* 01. Reset / Base
+==========================================================*/
+@use "@/styles/reset";
+@use "@/styles/base";
+
+
+/* 02. Theme（テーマ別の Alias Token 上書き）
+==========================================================*/
+@use "@/styles/theme";
+
+
+/* 03. Utilities
+==========================================================*/
+@use "@/styles/utilities";
+
+
+/* 04. Global CSS Variables
+==========================================================*/
+:root {
+  /* Layout
+  ----------------------------------------- */
+  --header-height: 60px;
+
+  /* Font sizes
+  ----------------------------------------- */
+  --fs-xxs: 0.625rem; /* 10px */
+  --fs-xs:  0.75rem;  /* 12px */
+  --fs-sm:  0.875rem; /* 14px */
+  --fs-md:  1rem;     /* 16px */
+  --fs-lg:  1.25rem;  /* 20px */
+  --fs-xl:  1.5rem;   /* 24px */
+  --fs-xxl: 2rem;     /* 32px */
+
+  /* Global Token
+  ----------------------------------------- */
+  --global-gray-900: #1a1c20;
+  --global-gray-800: #2e3238;
+  --global-gray-500: #8e949e;
+  --global-gray-300: #cccccc;
+  --global-gray-100: #f0f0f0;
+  --global-gray-50:  #fafafa;
+  --global-white:    #ffffff;
+  --global-teal-500: #008080;
+
+  /* Alias Token
+  ----------------------------------------- */
+  /* Text */
+  --color-text:           var(--global-gray-900);
+  --color-text-muted:     var(--global-gray-500);
+  --color-text-inverse:   var(--global-white);
+  --color-text-accent:    var(--global-teal-500);
+
+  /* Background */
+  --color-bg:             var(--global-gray-50);
+  --color-bg-inverse:     var(--global-gray-900);
+
+  /* Border */
+  --color-border:         var(--global-gray-900);
+  --color-border-muted:   var(--global-gray-300);
+  --color-border-subtle:  var(--global-gray-100);
+
+  /* Icon（アイコン・装飾） */
+  --color-icon:           var(--global-gray-900);
+  --color-icon-accent:    var(--global-teal-500);
+
+  /* Spotlight（マウス追従の光の色管理）
+  ----------------------------------------- */
+  --spotlight-core: rgba(255, 255, 255, 1);   /* 固定ライト・中心 */
+  --spotlight-mid:  rgba(255, 255, 255, 0.4); /* 固定ライト・中間 */
+  --spotlight-soft: rgba(255, 255, 255, 0.8); /* マウス追従ライト：背景側の色を重ねてグリッドを消す */
+
+  /* PageTransition（canvas で描くページ遷移演出） */
+  --transition-cell: #ffffff;     /* マス目の塗り */
+  --transition-fade: 238, 236, 234; /* 消え際・現れ際のフェード */
+  --transition-grid: 200, 196, 190; /* マス目の罫線 */
+
+  /* Interaction（操作に対する反応）
+  ----------------------------------------- */
+  --opacity-hover:    0.7;  /* hover 時の透過 */
+  --opacity-disabled: 0.4;  /* 操作できない状態 */
+  --duration-hover:   0.3s; /* hover の遷移時間 */
+  --ease-hover:       ease; /* hover のイージング */
+
+  /* z-index
+  ----------------------------------------- */
+  --z-background: -1;   /* 背景 */
+  --z-footer-fixed: 100;   /* TOP・weather の画面下部固定フッター */
+  --z-page-transition-residue: 990;  /* 画面遷移演出 PageTransition の残像ノイズ（背面） */
+  --z-page-transition: 1000;  /* 画面遷移演出 PageTransition のディゾルブ（前面） */
+  --z-header: 2000;  /* ヘッダー。ページ遷移中も見えるよう、遷移アニメーションより前面に */
+  --z-modal-overlay: 3000; /*　モーダル関連　*/
+  --z-modal-body: 3010; /*　モーダル関連　*/
+  --z-toast: 9000;  /* オーバーレイを持たない通知類 */
+}

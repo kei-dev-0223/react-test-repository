@@ -1,0 +1,12 @@
+// Layout（PC表示時の幅）
+$content-width: 960px;  // 本文・メガメニューの共通コンテンツ幅
+$gutter-pc: 20px;       // コンテンツ左右の最小余白
+$body-min-width: $content-width + $gutter-pc * 2; // 1000px：これ以下は横スクロールさせる
+
+// Breakpoints
+$bp-sp-max: 767.98px; // ブラウザにより、767pxが反映されないことが稀にあるため
+$bp-pc-min: 768px;
+
+// Breakpoints（ヘッダーナビ専用 ヘッダーの項目数増幅を考慮し設定。）
+$bp-nav-min: $body-min-width;          // 1000px：これ以上は、ヘッダーはPC表示
+$bp-nav-max: $body-min-width - 0.02px; // 999.98px：これ以下はSP表示

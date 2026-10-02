@@ -1,0 +1,46 @@
+.list{
+    display: block;
+    counter-reset: list-counter;
+    &__item{
+        display: flex;
+        counter-increment: list-counter;
+        &:before{
+            flex-shrink: 0;
+        }
+        &-in{
+            flex: 1;
+        }
+    }
+    &--dot{
+        .list__item{
+            &:before{
+                content: "・";
+            }
+        }
+    }
+    &--disc{
+        .list__item{
+            &:before{
+                content: "●";
+            }
+        }
+    }
+    &--decimal{
+        .list__item{
+            &:before{
+                content: counter(list-counter) ".";
+                margin-right: 8px;
+                font-variant-numeric: tabular-nums;
+            }
+        }
+    }
+    &--decimal-leading-zero{
+        .list__item{
+            &:before{
+                content: counter(list-counter, decimal-leading-zero) ".";
+                margin-right: 8px;
+                font-variant-numeric: tabular-nums;
+            }
+        }
+    }
+}

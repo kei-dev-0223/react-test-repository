@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="500" height="300" role="img" aria-label="サンプル画像">
+  <rect width="500" height="300" fill="#9a9ea6"/>
+  <path d="M500 0 L500 300 L0 300 Z" fill="#8f949c"/>
+  <text x="250" y="159" font-family="sans-serif" font-size="24" letter-spacing="8" fill="#ffffff" text-anchor="middle">SAMPLE</text>
+</svg>

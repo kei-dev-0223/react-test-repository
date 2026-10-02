@@ -1,0 +1,15 @@
+.text{
+    color: color-mix(in srgb, var(--color-text), transparent 10%);
+    &--body{
+        font-size: var(--fs-sm);
+    }
+    &--small{
+        font-size: var(--fs-xs);
+    }
+    &--note{
+        font-size: var(--fs-xs);
+        color: color-mix(in srgb, var(--color-text), transparent 40%);
+        padding-left: 16px;
+        border-left: 2px solid color-mix(in srgb, var(--color-border), transparent 74%);
+    }
+}
